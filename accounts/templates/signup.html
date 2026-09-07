@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>welcome to sign up page</h1>
+<form method="post">
+     {% csrf_token %}
+    User: <input type="text" placeholder="Enter user name" name="txtname" required><br>
+    Email: <input type="email" placeholder="Enter email" name="txtmail" required><br>
+    Password: <input type="password" placeholder="Enter password" name="pswd" required><br>
+    Confirm Password: <input type="password" placeholder="confirm password" name="cpswd" required><br>
+<button type="submit">signup</button>
+
+    {% for message in messages %}
+    <h5 style="color:red">{{ message }}</h5>
+    {% endfor %}
+
+</form>
+<p>if Exist user <a href="{% url 'login' %}">Login</a></p>
+</body>
+</html>

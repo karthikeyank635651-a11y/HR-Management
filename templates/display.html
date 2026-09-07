@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">education</th>
+      <th scope="col">course</th>
+      <th scope="col">admission_date</th>
+      <th scope="col">paid_fee</th>
+      <th scope="col">total_fee</th>
+      {% if request.user.is_superuser %}
+      <th scope="col">update</th>
+      <th scope="col">Delete</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for student in student_data %}
+    <tr>
+      <th scope="row">{{ student.id }}</th>
+      <td>{{ student.name }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.education }}</td>
+      <td>{{ student.course }}</td>
+      <td>{{ student.admission_date }}</td>
+      <td>{{ student.paid_fee }}</td>
+      <td>{{ student.total_fee }}</td>
+       {% if request.user.is_superuser %}
+      <td><a href="{% url 'updatestudent' student.id %}">Update</a></td>
+      <td><a href="{% url 'deletestudent' student.id %}">Delete</a></td>
+    {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
